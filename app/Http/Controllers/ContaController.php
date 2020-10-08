@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Conta;
-use App\AceitePropostaYes;
+use App\Services\ContaService;
+use App\Services\AceitePropostaYesService;
 
 class ContaController extends Controller
 {
-    protected $conta;
-    protected $aceitePropostaYes;
+    protected $contaService;
+    protected $aceitePropostaYesService;
 
-    public function __construct(Conta $conta, AceitePropostaYes $aceitePropostaYes)
+    public function __construct(ContaService $contaService, AceitePropostaYesService $aceitePropostaYesService)
     {
-        $this->conta = $conta;
-        $this->aceitePropostaYes = $aceitePropostaYes;
+        $this->contaService = $contaService;
+        $this->aceitePropostaYesService = $aceitePropostaYesService;
     }
 
     public function getAll()
     {
-        $contas = $this->conta->getAll();
-        $aceites = $this->aceitePropostaYes->getAll();
+        $contas = $this->contaService->getAll();
+        $aceites = $this->aceitePropostaYesService->getAll();
 
         foreach ($contas as $conta) {
             echo $conta->valor . "<br />";
