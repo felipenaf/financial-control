@@ -12,4 +12,5 @@ class Conta extends Model
     {
         return Conta::all();
     }
+
 }

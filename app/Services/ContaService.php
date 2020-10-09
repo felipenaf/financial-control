@@ -2,20 +2,20 @@
 
 namespace App\Services;
 
-use App\Conta;
+use App\ContaRepository;
 
 class ContaService
 {
-    private $conta;
+    private $contaRepository;
 
-    public function __construct(Conta $conta)
+    public function __construct(ContaRepository $contaRepository)
     {
-        $this->conta = $conta;
+        $this->contaRepository = $contaRepository;
     }
 
     public function getAll()
     {
-        return $this->conta->getAll();
+        return $this->contaRepository->getAll();
     }
 
 }
