@@ -13,4 +13,9 @@ class Conta extends Model
         return Conta::all();
     }
 
+    public function get(int $id)
+    {
+        return Conta::find($id);
+    }
+
 }

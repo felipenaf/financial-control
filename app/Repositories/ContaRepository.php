@@ -13,9 +13,14 @@ class ContaRepository
         $this->conta = $conta;
     }
 
-    public function getAll ()
+    public function getAll()
     {
         return $this->conta->getAll();
+    }
+
+    public function get(int $id)
+    {
+        return $this->conta->get($id);
     }
 
 }

@@ -4,32 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ContaService;
-use App\Services\AceitePropostaYesService;
 
 class ContaController extends Controller
 {
     protected $contaService;
     protected $aceitePropostaYesService;
 
-    public function __construct(ContaService $contaService, AceitePropostaYesService $aceitePropostaYesService)
+    public function __construct(ContaService $contaService)
     {
         $this->contaService = $contaService;
-        $this->aceitePropostaYesService = $aceitePropostaYesService;
     }
 
-    public function getAll()
+    public function index()
     {
         $contas = $this->contaService->getAll();
-        $aceites = $this->aceitePropostaYesService->getAll();
 
-        foreach ($contas as $conta) {
-            echo $conta->valor . "<br />";
+        if (empty($contas)) {
+            return response('', 204);
         }
 
-        foreach ($aceites as $aceite) {
-            echo $aceite->id_certificacao . "<br />";
+        return response($contas, 200);
+        // return view('welcome');
+    }
+
+    public function show(Request $request, int $id)
+    {
+        $resource = $this->contaService->get($id);
+
+        if (empty($resource)) {
+            return response('', 204);
         }
 
-        return view('welcome');
+        return response($request->fullUrl(), 250);
     }
 }

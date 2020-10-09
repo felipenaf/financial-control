@@ -15,7 +15,19 @@ class ContaService
 
     public function getAll()
     {
-        return $this->contaRepository->getAll();
+        $resources = $this->contaRepository->getAll();
+
+        $contas = [];
+        foreach ($resources as $conta) {
+            array_push($contas, $conta->valor);
+        }
+
+        return $contas;
+    }
+
+    public function get(int $id)
+    {
+        return $this->contaRepository->get($id);
     }
 
 }

@@ -14,6 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/', function (Request $request) {
+    return response(['message' => $request->path(), 'status' => 'Connected']);;
 });
+
+Route::resource('conta', 'ContaController');
+
+/**
+ * Actions Handled By Resource Controller
+
+ *   Verb       URI                 Action	    Route Name
+ *   GET        /conta              index	    conta.index
+ *   GET        /conta/create       create	    conta.create
+ *   POST       /conta              store	    conta.store
+ *   GET        /conta/{id}         show	    conta.show
+ *   GET        /conta/{id}/edit    edit	    conta.edit
+ *   PUT/PATCH  /conta/{id}         update	    conta.update
+ *   DELETE     /conta/{id}         destroy	    conta.destroy
+*/
