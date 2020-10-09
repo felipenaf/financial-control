@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\ContaRepository;
+use App\Repositories\ContaRepository;
 
 class ContaService
 {
