@@ -24,7 +24,6 @@ class ContaController extends Controller
         }
 
         return response($contas, 200);
-        // return view('welcome');
     }
 
     public function show(Request $request, int $id)
