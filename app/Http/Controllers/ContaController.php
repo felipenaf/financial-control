@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ContaService;
+use App\Http\Requests\ContaRequest;
 
 class ContaController extends Controller
 {
@@ -26,7 +27,7 @@ class ContaController extends Controller
         return response($contas, 200);
     }
 
-    public function show(Request $request, int $id)
+    public function show(int $id)
     {
         $resource = $this->contaService->get($id);
 
@@ -34,6 +35,14 @@ class ContaController extends Controller
             return response('', 204);
         }
 
-        return response($request->fullUrl(), 250);
+        return response($resource, 200);
     }
+
+    public function store(ContaRequest $request)
+    {
+        $request->validated();
+
+        $dd = $request->json();
+    }
+
 }

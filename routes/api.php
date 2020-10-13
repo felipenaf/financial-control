@@ -22,7 +22,10 @@ Route::get('/', function (Request $request) {
     return response(['message' => $request->path(), 'status' => 'Connected']);;
 });
 
-Route::resource('conta', 'ContaController');
+Route::apiResources([
+    'conta' => 'ContaController',
+    'aceitePropostaYes' => 'AceitePropostaYesController'
+]);
 
 /**
  * Actions Handled By Resource Controller
