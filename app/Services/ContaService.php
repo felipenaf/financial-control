@@ -3,8 +3,9 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\ContaRepositoryInterface;
+use App\Services\Contracts\ContaServiceInterface;
 
-class ContaService
+class ContaService implements ContaServiceInterface
 {
     private $contaRepository;
 

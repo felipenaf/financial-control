@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ContaService;
 use App\Http\Requests\ContaRequest;
+use App\Services\Contracts\ContaServiceInterface;
 
 class ContaController extends Controller
 {
     protected $contaService;
 
-    public function __construct(ContaService $contaService)
+    public function __construct(ContaServiceInterface $contaService)
     {
         $this->contaService = $contaService;
     }

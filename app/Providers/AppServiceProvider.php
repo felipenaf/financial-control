@@ -6,6 +6,13 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    private $namespaceService = 'App\Services';
+    private $namespaceContract = 'App\Services\Contracts';
+
+    private $services = [
+        '\ContaService',
+    ];
+
     /**
      * Register any application services.
      *
@@ -13,7 +20,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        foreach ($this->services as $service) {
+            $interface = $this->namespaceContract . $service . 'Interface';
+            $implementation = $this->namespaceService . $service;
+
+            $this->app->bind($interface, $implementation);
+        }
+
     }
 
     /**
