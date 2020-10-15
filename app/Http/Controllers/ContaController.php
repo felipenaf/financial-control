@@ -29,7 +29,7 @@ class ContaController extends Controller
 
     public function show(int $id)
     {
-        $resource = $this->contaService->get($id);
+        $resource = $this->contaService->getById($id);
 
         if (empty($resource)) {
             return response('', 204);

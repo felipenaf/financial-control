@@ -25,9 +25,9 @@ class ContaService
         return $contas;
     }
 
-    public function get(int $id)
+    public function getById(int $id)
     {
-        return $this->contaRepository->get($id);
+        return $this->contaRepository->getById($id);
     }
 
 }

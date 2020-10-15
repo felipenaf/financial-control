@@ -13,7 +13,7 @@ class Conta extends Model
         return Conta::all();
     }
 
-    public function get(int $id)
+    public function getById(int $id)
     {
         return Conta::find($id);
     }

@@ -8,7 +8,7 @@ class ContaRepository
 {
     private $conta;
 
-    public function __construct (Conta $conta)
+    public function __construct(Conta $conta)
     {
         $this->conta = $conta;
     }
@@ -16,9 +16,10 @@ class ContaRepository
     public function getAll()
     {
         return $this->conta->getAll();
+
     }
 
-    public function get(int $id)
+    public function getById(int $id)
     {
         return $this->conta->get($id);
     }
