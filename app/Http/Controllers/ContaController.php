@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Services\ContaService;
 use App\Http\Requests\ContaRequest;
 
 class ContaController extends Controller
 {
     protected $contaService;
-    protected $aceitePropostaYesService;
 
     public function __construct(ContaService $contaService)
     {
@@ -18,13 +16,13 @@ class ContaController extends Controller
 
     public function index()
     {
-        $contas = $this->contaService->getAll();
+        $resource = $this->contaService->getAll();
 
-        if (empty($contas)) {
+        if (empty($resource)) {
             return response('', 204);
         }
 
-        return response($contas, 200);
+        return response($resource, 200);
     }
 
     public function show(int $id)
