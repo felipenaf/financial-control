@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
-use App\Repositories\ContaRepository;
+use App\Repositories\Contracts\ContaRepositoryInterface;
 
 class ContaService
 {
     private $contaRepository;
 
-    public function __construct(ContaRepository $contaRepository)
+    public function __construct(ContaRepositoryInterface $contaRepository)
     {
         $this->contaRepository = $contaRepository;
     }

@@ -10,7 +10,7 @@ class Conta extends Model
 
     public function getAll()
     {
-        return Conta::all();
+        return Conta::all()->take(10);
     }
 
     public function getById(int $id)

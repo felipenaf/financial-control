@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Conta;
+use App\Repositories\Contracts\ContaRepositoryInterface;
 
-class ContaRepository
+class ContaRepository implements ContaRepositoryInterface
 {
     private $conta;
 
@@ -16,12 +17,11 @@ class ContaRepository
     public function getAll()
     {
         return $this->conta->getAll();
-
     }
 
     public function getById(int $id)
     {
-        return $this->conta->get($id);
+        return $this->conta->getById($id);
     }
 
 }
