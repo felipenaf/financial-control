@@ -6,11 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 class AppRepositoryProvider extends ServiceProvider
 {
-    private $namespaceRepository = 'App\Repositories';
-    private $namespaceContract = 'App\Repositories\Contracts';
+    private $namespaceRepository = 'App\Repositories\\';
+    private $namespaceContract = 'App\Repositories\Contracts\\';
 
     private $repositories = [
-        '\ContaRepository',
+        'ContaRepository',
     ];
 
     /**
@@ -21,7 +21,10 @@ class AppRepositoryProvider extends ServiceProvider
     public function register()
     {
         foreach ($this->repositories as $repository) {
-            $this->app->bind($this->namespaceContract . $repository . 'Interface', $this->namespaceRepository . $repository);
+            $interface = $this->namespaceContract . $repository . 'Interface';
+            $implementation = $this->namespaceRepository . $repository;
+
+            $this->app->bind($interface, $implementation);
         }
 
     }

@@ -6,11 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    private $namespaceService = 'App\Services';
-    private $namespaceContract = 'App\Services\Contracts';
+    private $namespaceService = 'App\Services\\';
+    private $namespaceContract = 'App\Services\Contracts\\';
 
     private $services = [
-        '\ContaService',
+        'ContaService',
     ];
 
     /**
@@ -38,4 +38,5 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
 }
