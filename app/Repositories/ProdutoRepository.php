@@ -14,8 +14,17 @@ class ProdutoRepository implements ProdutoRepositoryInterface
         $this->model = $model;
     }
 
-    public function getAll(){
+    public function getAll() {
         return $this->model->all();
+    }
+
+    public function store($produto) {
+        $this->model->id_grupo = $produto->id_grupo;
+        $this->model->id_usuario = $produto->id_usuario;
+        $this->model->valor = $produto->valor;
+        $this->model->descricao = $produto->descricao;
+
+        return $this->model->save();
     }
 
 }

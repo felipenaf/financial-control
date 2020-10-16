@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutoRequest;
 use App\Produto;
 use App\Services\Contracts\ProdutoServiceInterface;
 use Illuminate\Http\Request;
@@ -31,9 +32,11 @@ class ProdutoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
-        //
+        $request->validated();
+
+        return $this->service->store($request);
     }
 
     /**

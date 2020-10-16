@@ -19,4 +19,9 @@ class ProdutoService implements ProdutoServiceInterface
         return $this->repository->getAll();
     }
 
+    public function store($produto)
+    {
+        return $this->repository->store($produto);
+    }
+
 }
