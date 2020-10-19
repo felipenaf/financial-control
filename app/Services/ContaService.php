@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\ContaRequest;
 use App\Repositories\Contracts\ContaRepositoryInterface;
 use App\Services\Contracts\ContaServiceInterface;
 
@@ -29,6 +30,11 @@ class ContaService implements ContaServiceInterface
     public function getById(int $id)
     {
         return $this->contaRepository->getById($id);
+    }
+
+    public function save(ContaRequest $request)
+    {
+        return $this->contaRepository->save($request);
     }
 
 }

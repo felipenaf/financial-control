@@ -9,16 +9,16 @@ use Illuminate\Support\Facades\Validator;
 
 class ContaController extends Controller
 {
-    protected $contaService;
+    protected $service;
 
-    public function __construct(ContaServiceInterface $contaService)
+    public function __construct(ContaServiceInterface $service)
     {
-        $this->contaService = $contaService;
+        $this->service = $service;
     }
 
     public function index()
     {
-        $resource = $this->contaService->getAll();
+        $resource = $this->service->getAll();
 
         if (empty($resource)) {
             return response('', 204);
@@ -29,7 +29,7 @@ class ContaController extends Controller
 
     public function show(int $id)
     {
-        $resource = $this->contaService->getById($id);
+        $resource = $this->service->getById($id);
 
         if (empty($resource)) {
             return response('', 204);
@@ -40,16 +40,17 @@ class ContaController extends Controller
 
     public function store(ContaRequest $request)
     {
-        $validator = Validator::make(
-            $request->all(),
-            $request->attributes()
-        );
+        $validator = Validator::make($request->all(), $request->attributes());
 
         if($validator->fails()){
             return response($validator->errors(), 400);
         }
 
-        return response($request->all());
+        return response([
+            'status' => 200,
+            'data' => $this->service->save($request)
+        ]);
+
     }
 
 }

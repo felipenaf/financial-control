@@ -8,14 +8,12 @@ class Conta extends Model
 {
     protected $table = 'tb_conta';
 
-    public function getAll()
-    {
-        return Conta::all()->take(10);
-    }
+    protected $fillable = [
+        'tipo', 'titulo', 'valor', 'forma_pagamento',
+        'mais_informacoes', 'id_usuario', 'id_certificacao'
+    ];
 
-    public function getById(int $id)
-    {
-        return Conta::find($id);
-    }
+    const CREATED_AT = 'data_registro';
+    const UPDATED_AT = null;
 
 }
