@@ -3,7 +3,7 @@
 @contentType = application/json
 @createdAt = {{$datetime iso8601}}
 @modifiedBy = {{$processEnv USERNAME}}
-@name = conta
+@name = contas
 
 ###
 GET {{host}}/{{name}} HTTP/1.1
