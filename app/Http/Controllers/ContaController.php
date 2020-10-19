@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContaRequest;
 use App\Services\Contracts\ContaServiceInterface;
+use Illuminate\Support\Facades\Validator;
+// use Illuminate\Http\Request;
 
 class ContaController extends Controller
 {
@@ -38,9 +40,16 @@ class ContaController extends Controller
 
     public function store(ContaRequest $request)
     {
-        $request->validated();
+        $validator = Validator::make(
+            $request->all(),
+            $request->attributes()
+        );
 
-        $dd = $request->json();
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        return response($request->all());
     }
 
 }

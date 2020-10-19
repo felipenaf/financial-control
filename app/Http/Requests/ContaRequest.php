@@ -23,27 +23,26 @@ class ContaRequest extends FormRequest
      */
     public function rules()
     {
+        return [];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
         return [
-            'tipo'              => 'required',
+            'tipo'              => 'required|numeric',
             'titulo'            => 'required',
             'valor'             => 'required',
             'forma_pagamento'   => 'required',
             'mais_informacoes'  => 'required',
-            'id_usuario'        => 'required',
-            'id_certificacao'   => 'required'
+            'id_usuario'        => 'required|numeric',
+            'id_certificacao'   => 'required|numeric'
         ];
+
     }
 
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            // não funcionou
-            'tipo.required' => 'A tipo is required',
-        ];
-    }
 }

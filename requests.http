@@ -16,7 +16,7 @@ POST {{host}}/{{name}} HTTP/1.1
 Content-Type: {{contentType}}
 
 {
-    "tipo": "",
+    "tipo": "1",
     "titulo": "teste",
     "valor": "520.66",
     "forma_pagamento": "outros",
