@@ -2,9 +2,11 @@
 
 namespace App\Services\Contracts;
 
+use App\Http\Requests\ProdutoRequest;
+
 interface ProdutoServiceInterface
 {
     public function getAll();
 
-    public function store($produto);
+    public function store(ProdutoRequest $produto);
 }

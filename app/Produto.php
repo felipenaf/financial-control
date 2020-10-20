@@ -8,4 +8,12 @@ class Produto extends Model
 {
     protected $table = 'produtos';
 
+    protected $fillable = [
+        'id_grupo', 'id_usuario',
+        'descricao', 'valor'
+    ];
+
+    const CREATED_AT = null;
+    const UPDATED_AT = 'data_modificacao';
+
 }

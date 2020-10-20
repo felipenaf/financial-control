@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\ProdutoRequest;
 use App\Repositories\Contracts\ProdutoRepositoryInterface;
 use App\Services\Contracts\ProdutoServiceInterface;
 
@@ -19,7 +20,7 @@ class ProdutoService implements ProdutoServiceInterface
         return $this->repository->getAll();
     }
 
-    public function store($produto)
+    public function store(ProdutoRequest $produto)
     {
         return $this->repository->store($produto);
     }

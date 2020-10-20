@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\ProdutoRequest;
 use App\Produto;
 use App\Repositories\Contracts\ProdutoRepositoryInterface;
 
@@ -14,17 +15,17 @@ class ProdutoRepository implements ProdutoRepositoryInterface
         $this->model = $model;
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         return $this->model->all();
     }
 
-    public function store($produto) {
-        $this->model->id_grupo = $produto->id_grupo;
-        $this->model->id_usuario = $produto->id_usuario;
-        $this->model->valor = $produto->valor;
-        $this->model->descricao = $produto->descricao;
+    public function store(ProdutoRequest $request)
+    {
+        $produto = $this->model->fill($request->all());
+        $produto->save();
 
-        return $this->model->save();
+        return $this->model::find($produto->id);
     }
 
 }
