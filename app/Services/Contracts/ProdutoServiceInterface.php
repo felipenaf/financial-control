@@ -11,4 +11,6 @@ interface ProdutoServiceInterface
     public function getById(int $id);
 
     public function store(ProdutoRequest $produto);
+
+    public function update(ProdutoRequest $request, int $id);
 }

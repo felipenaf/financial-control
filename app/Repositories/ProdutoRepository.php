@@ -33,4 +33,21 @@ class ProdutoRepository implements ProdutoRepositoryInterface
         return $this->model::find($produto->id);
     }
 
+    public function update(ProdutoRequest $request, int $id)
+    {
+        $produto = $this->model->find($id);
+
+        if (empty($produto)) {
+            return null;
+        }
+
+        $produto->fill($request->except([
+            'id', 'id_usuario', 'data_modificacao'
+        ]));
+
+        $produto->save();
+
+        return $produto;
+    }
+
 }

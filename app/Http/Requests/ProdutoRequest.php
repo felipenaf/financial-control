@@ -31,13 +31,24 @@ class ProdutoRequest extends FormRequest
      *
      * @return array
      */
-    public function attributes()
+    public function storeRules()
     {
         return [
             'id_grupo' => 'required|integer',
             'id_usuario' => 'required|integer',
             'descricao' => 'required',
             'valor' => 'required|numeric',
+        ];
+
+    }
+
+    public function updateRules()
+    {
+        return [
+            'id_grupo' => 'integer',
+            'valor' => 'numeric',
+            'data_criacao' => 'date',
+            'descricao' => 'filled'
         ];
 
     }

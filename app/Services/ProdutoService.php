@@ -30,4 +30,9 @@ class ProdutoService implements ProdutoServiceInterface
         return $this->repository->store($produto);
     }
 
+    public function update(ProdutoRequest $request, int $id)
+    {
+        return $this->repository->update($request, $id);
+    }
+
 }

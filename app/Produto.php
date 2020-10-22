@@ -9,8 +9,8 @@ class Produto extends Model
     protected $table = 'produtos';
 
     protected $fillable = [
-        'id_grupo', 'id_usuario',
-        'descricao', 'valor'
+        'id_grupo', 'id_usuario', 'descricao',
+        'valor', 'observacao', 'data_criacao'
     ];
 
     const CREATED_AT = null;
