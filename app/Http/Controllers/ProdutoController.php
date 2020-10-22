@@ -19,7 +19,17 @@ class ProdutoController extends Controller
 
     public function index()
     {
-        return $this->service->getAll();
+        $produtos = $this->service->getAll();
+
+        if (empty($produtos)) {
+            return response('', 404);
+        }
+
+        return response([
+            'status' => 200,
+            'data' => $produtos
+        ]);
+
     }
 
     public function store(ProdutoRequest $request)
