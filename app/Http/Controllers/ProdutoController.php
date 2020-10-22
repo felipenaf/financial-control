@@ -67,15 +67,18 @@ class ProdutoController extends Controller
 
         }
 
+        $produto = $this->service->update($request, $id);
+
         return response([
-            'status' => 200,
-            'data' => $this->service->update($request, $id)
+            'status' => empty($produto) ? 204 : 200,
+            'data' => $produto
         ]);
 
     }
 
     public function destroy(Produto $produto)
     {
-        //
+
     }
+
 }
