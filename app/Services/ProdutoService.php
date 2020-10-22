@@ -20,6 +20,11 @@ class ProdutoService implements ProdutoServiceInterface
         return $this->repository->getAll();
     }
 
+    public function getById(int $id)
+    {
+        return $this->repository->getById($id);
+    }
+
     public function store(ProdutoRequest $produto)
     {
         return $this->repository->store($produto);

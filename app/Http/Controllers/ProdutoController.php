@@ -57,9 +57,19 @@ class ProdutoController extends Controller
      * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function show(Produto $produto)
+    public function show(int $id)
     {
-        //
+        $produto = $this->service->getById($id);
+
+        if (empty($produto)) {
+            return response('', 204);
+        }
+
+        return response([
+            'status' => 200,
+            'data' => $produto
+        ]);
+
     }
 
     /**
