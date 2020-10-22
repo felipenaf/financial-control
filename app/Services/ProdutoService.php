@@ -35,4 +35,9 @@ class ProdutoService implements ProdutoServiceInterface
         return $this->repository->update($request, $id);
     }
 
+    public function destroy(int $id)
+    {
+        return $this->repository->destroy($id);
+    }
+
 }

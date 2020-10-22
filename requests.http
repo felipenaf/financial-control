@@ -5,13 +5,13 @@
 @modifiedBy = {{$processEnv USERNAME}}
 @name = produtos
 
-###
+### getAll
 GET {{host}}/{{name}} HTTP/1.1
 
-###
+### getById
 GET {{host}}/{{name}}/150 HTTP/1.1
 
-###
+### store
 POST {{host}}/{{name}} HTTP/1.1
 Content-Type: {{contentType}}
 
@@ -22,7 +22,7 @@ Content-Type: {{contentType}}
     "descricao": "outros"
 }
 
-###
+### update
 PUT {{host}}/{{name}}/16 HTTP/1.1
 Content-Type: {{contentType}}
 
@@ -33,3 +33,6 @@ Content-Type: {{contentType}}
     "observacao": "teste2",
     "data_criacao": "2018-12-31"
 }
+
+### delete
+DELETE {{host}}/{{name}}/4 HTTP/1.1

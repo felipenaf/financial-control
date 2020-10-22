@@ -50,4 +50,15 @@ class ProdutoRepository implements ProdutoRepositoryInterface
         return $produto;
     }
 
+    public function destroy(int $id)
+    {
+        $produto = $this->model->find($id);
+
+        if (empty($produto)) {
+            return false;
+        }
+
+        return $produto->delete();
+    }
+
 }

@@ -13,4 +13,7 @@ interface ProdutoRepositoryInterface
     public function store(ProdutoRequest $produto);
 
     public function update(ProdutoRequest $request, int $id);
+
+    public function destroy(int $id);
+
 }
