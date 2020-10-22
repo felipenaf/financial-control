@@ -17,22 +17,11 @@ class ProdutoController extends Controller
         $this->service = $service;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return $this->service->getAll();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(ProdutoRequest $request)
     {
         $validator = Validator::make($request->all(), $request->storeRules());
@@ -51,12 +40,6 @@ class ProdutoController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Produto  $produto
-     * @return \Illuminate\Http\Response
-     */
     public function show(int $id)
     {
         $produto = $this->service->getById($id);
@@ -72,13 +55,6 @@ class ProdutoController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Produto  $produto
-     * @return \Illuminate\Http\Response
-     */
     public function update(ProdutoRequest $request, int $id)
     {
         $validator = Validator::make($request->all(), $request->updateRules());
@@ -95,14 +71,9 @@ class ProdutoController extends Controller
             'status' => 200,
             'data' => $this->service->update($request, $id)
         ]);
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Produto  $produto
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Produto $produto)
     {
         //
