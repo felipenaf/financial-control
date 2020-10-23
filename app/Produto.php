@@ -19,4 +19,8 @@ class Produto extends Model
     const CREATED_AT = null;
     const UPDATED_AT = 'data_modificacao';
 
+    public function grupo()
+    {
+        return $this->hasOne('App\Grupo', 'id', 'id_grupo');
+    }
 }
