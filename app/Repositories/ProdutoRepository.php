@@ -17,7 +17,7 @@ class ProdutoRepository implements ProdutoRepositoryInterface
 
     public function getAll()
     {
-        return $this->model->all();
+        return $this->model->with(['grupo'])->get();
     }
 
     public function getById(int $id)

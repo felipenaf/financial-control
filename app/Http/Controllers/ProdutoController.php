@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProdutoRequest;
-use App\Produto;
-use App\Services\Contracts\ProdutoServiceInterface;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Contracts\ProdutoServiceInterface;
+use App\Http\Requests\ProdutoRequest;
 
 class ProdutoController extends Controller
 {
@@ -19,17 +17,12 @@ class ProdutoController extends Controller
 
     public function index()
     {
-        $produtos = $this->service->getAll();
+        return $this->service->getAll();
+    }
 
-        if (empty($produtos)) {
-            return response('', 404);
-        }
-
-        return response([
-            'status' => 200,
-            'data' => $produtos
-        ]);
-
+    public function show(int $id)
+    {
+        return $this->service->getById($id);
     }
 
     public function store(ProdutoRequest $request)
@@ -46,21 +39,6 @@ class ProdutoController extends Controller
         return response([
             'status' => 200,
             'data' => $this->service->store($request)
-        ]);
-
-    }
-
-    public function show(int $id)
-    {
-        $produto = $this->service->getById($id);
-
-        if (empty($produto)) {
-            return response('', 204);
-        }
-
-        return response([
-            'status' => 200,
-            'data' => $produto
         ]);
 
     }

@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Http\Requests\ProdutoRequest;
 use App\Repositories\Contracts\ProdutoRepositoryInterface;
 use App\Services\Contracts\ProdutoServiceInterface;
+use Exception;
+use Illuminate\Http\Response;
 
 class ProdutoService implements ProdutoServiceInterface
 {
@@ -17,12 +19,50 @@ class ProdutoService implements ProdutoServiceInterface
 
     public function getAll()
     {
-        return $this->repository->getAll();
+        try {
+            $response = $this->repository->getAll();
+
+            $code = empty($response)
+                ? Response::HTTP_NOT_FOUND
+                : Response::HTTP_OK;
+
+            return response([
+                'code' => $code,
+                'data' => $response,
+            ], $code);
+
+        } catch (Exception $e) {
+            return response([
+                'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'error' => explode("\n", $e->getMessage())
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
+        }
+
     }
 
     public function getById(int $id)
     {
-        return $this->repository->getById($id);
+        try {
+            $response = $this->repository->getById($id);
+
+            $code = empty($response)
+                ? Response::HTTP_NOT_FOUND
+                : Response::HTTP_OK;
+
+            return response([
+                'code' => $code,
+                'data' => $response,
+            ], $code);
+
+        } catch (Exception $e) {
+            return response([
+                'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'error' => explode("\n", $e->getMessage())
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
+        }
+
     }
 
     public function store(ProdutoRequest $produto)
