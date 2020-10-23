@@ -17,7 +17,7 @@ trait ApiResponser
     {
         $responseData = ['data' => $data];
 
-        return response()->json($responseData, $code);
+        return response($responseData, $code);
     }
 
     /**
@@ -31,6 +31,6 @@ trait ApiResponser
     {
         $responseData = ['error' => $message, 'code' => $code];
 
-        return response()->json($responseData, $code);
+        return response($responseData, $code);
     }
 }
