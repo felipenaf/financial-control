@@ -16,6 +16,8 @@ class Produto extends Model
         'valor', 'observacao', 'data_criacao'
     ];
 
+    protected $hidden = ['deleted_at'];
+
     const CREATED_AT = null;
     const UPDATED_AT = 'data_modificacao';
 
