@@ -25,4 +25,5 @@ class Produto extends Model
     {
         return $this->hasOne('App\Grupo', 'id', 'id_grupo');
     }
+
 }

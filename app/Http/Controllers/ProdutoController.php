@@ -27,20 +27,7 @@ class ProdutoController extends Controller
 
     public function store(ProdutoRequest $request)
     {
-        $validator = Validator::make($request->all(), $request->storeRules());
-
-        if ($validator->fails()) {
-            return response([
-                'status' => 400,
-                'data' => $validator->errors()
-            ], 400);
-        }
-
-        return response([
-            'status' => 200,
-            'data' => $this->service->store($request)
-        ]);
-
+        return $this->service->store($request);
     }
 
     public function update(ProdutoRequest $request, int $id)
