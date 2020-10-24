@@ -13,13 +13,10 @@ class Produto extends Model
 
     protected $fillable = [
         'id_grupo', 'id_usuario', 'descricao',
-        'valor', 'observacao', 'data_criacao'
+        'valor', 'observacao', 'data_consumo'
     ];
 
     protected $hidden = ['deleted_at'];
-
-    const CREATED_AT = null;
-    const UPDATED_AT = 'data_modificacao';
 
     public function grupo()
     {
