@@ -37,13 +37,7 @@ class ProdutoController extends Controller
 
     public function destroy(int $id)
     {
-        $deleted = $this->service->destroy($id);
-
-        if (!$deleted) {
-            return response('', 204);
-        }
-
-        return response('');
+        return $this->service->destroy($id);
     }
 
 }

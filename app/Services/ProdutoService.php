@@ -136,7 +136,26 @@ class ProdutoService implements ProdutoServiceInterface
 
     public function destroy(int $id)
     {
-        return $this->repository->destroy($id);
+        try {
+            $response = $this->repository->destroy($id);
+
+            $code = $response === false
+                ? Response::HTTP_NOT_FOUND
+                : Response::HTTP_NO_CONTENT;
+
+            return response([
+                'code' => $code,
+                'data' => $response,
+            ], $code);
+
+        } catch (Exception $e) {
+            return response([
+                'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'error' => explode("\n", $e->getMessage())
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
+        }
+
     }
 
 }
