@@ -32,23 +32,7 @@ class ProdutoController extends Controller
 
     public function update(ProdutoRequest $request, int $id)
     {
-        $validator = Validator::make($request->all(), $request->updateRules());
-
-        if ($validator->fails()) {
-            return response([
-                'status' => 400,
-                'data' => $validator->errors()
-            ], 400);
-
-        }
-
-        $produto = $this->service->update($request, $id);
-
-        return response([
-            'status' => empty($produto) ? 204 : 200,
-            'data' => $produto
-        ]);
-
+        return $this->service->update($request, $id);
     }
 
     public function destroy(int $id)
