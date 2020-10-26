@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Validator;
 use App\Services\Contracts\ProdutoServiceInterface;
 use App\Http\Requests\ProdutoRequest;
 
