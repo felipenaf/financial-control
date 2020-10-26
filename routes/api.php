@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +22,22 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/login', 'UserController@login');
 
-Route::get('login', function (Request $request) {
-    $credentials = $request->only('email', 'password');
+Route::post('login', function (Request $request) {
+    $token = JWTAuth::attempt($request->only('email', 'password'));
 
-    if (!Auth::attempt($credentials)) {
-        return response('vish', 401);
+    if ($token === false) {
+        return response([
+            'status' => Response::HTTP_NOT_FOUND,
+            'error' => 'NOT FOUND.'
+        ], Response::HTTP_NOT_FOUND);
     }
+
+    return response([
+        'status' => Response::HTTP_OK,
+        'data' => [
+            'token' => $token,
+        ]
+    ]);
 
 });
 

@@ -5,7 +5,13 @@
 @name = users
 
 ### login
-GET {{host}}/login?email=felipe1@yes.com&password=123 HTTP/1.1
+POST {{host}}/login HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "email": "felipe2@yes.com",
+    "password": "123"
+}
 
 ### get
 GET {{host}}/{{name}}/1 HTTP/1.1
