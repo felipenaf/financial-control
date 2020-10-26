@@ -12,6 +12,7 @@ class AppRepositoryProvider extends ServiceProvider
     private $repositories = [
         'GrupoRepository',
         'ProdutoRepository',
+        'UserRepository'
     ];
 
     /**

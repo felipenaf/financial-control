@@ -12,6 +12,7 @@ class AppServiceProvider extends ServiceProvider
     private $services = [
         'GrupoService',
         'ProdutoService',
+        'UserService'
     ];
 
     /**
