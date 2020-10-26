@@ -1,21 +1,18 @@
-@port = 8000
-@host = http://localhost:{{port}}/api
-@contentType = application/json
-@createdAt = {{$datetime iso8601}}
-@modifiedBy = {{$processEnv USERNAME}}
+@host = http://localhost:8000/api
 @name = produtos
+@auth = xxxxxxx
 
 ### getAlll
 GET {{host}}/{{name}} HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYwMzc0MjUyNiwiZXhwIjoxNjAzNzQ2MTI2LCJuYmYiOjE2MDM3NDI1MjYsImp0aSI6Ims5ZkhCaUEySTJzZDdCeUkiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEiLCJlbWFpbCI6ImZlbGlwZTJAeWVzLmNvbSJ9.Oz1EtIkjhkb1N9AbSVEglj3z1E0YmhWXttaNCEMWsv4
+Authorization: Bearer {{auth}}
 
 ### getById
 GET {{host}}/{{name}}/150 HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYwMzc0MjUyNiwiZXhwIjoxNjAzNzQ2MTI2LCJuYmYiOjE2MDM3NDI1MjYsImp0aSI6Ims5ZkhCaUEySTJzZDdCeUkiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEiLCJlbWFpbCI6ImZlbGlwZTJAeWVzLmNvbSJ9.Oz1EtIkjhkb1N9AbSVEglj3z1E0YmhWXttaNCEMWsv4
+Authorization: Bearer {{auth}}
 
 ### store
 POST {{host}}/{{name}} HTTP/1.1
-Content-Type: {{contentType}}
+Content-Type: application/json
 
 {
     "id_grupo": "16",
@@ -27,7 +24,7 @@ Content-Type: {{contentType}}
 
 ### update
 PUT {{host}}/{{name}}/1 HTTP/1.1
-Content-Type: {{contentType}}
+Content-Type: application/json
 
 {
     "id_grupo": "2",
