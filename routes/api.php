@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 /*
@@ -22,7 +23,17 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 // Route::get('/login', 'UserController@login');
 
-Route::post('login', function (Request $request) {
+Route::post('login', function (UserRequest $request) {
+    $validator = Validator::make($request->only('email', 'password'), $request->loginRules());
+
+    if ($validator->fails()) {
+        return response([
+            'code' => Response::HTTP_BAD_REQUEST,
+            'data' => $validator->errors()
+        ], Response::HTTP_BAD_REQUEST);
+
+    }
+
     $token = JWTAuth::attempt($request->only('email', 'password'));
 
     if ($token === false) {

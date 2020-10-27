@@ -36,6 +36,16 @@ class UserRequest extends FormRequest
         return [
             'email' => ['required', 'unique:users', 'email'],
             'password' => 'required',
+            'name' => 'required'
+        ];
+
+    }
+
+    public function loginRules()
+    {
+        return [
+            'email' => ['required', 'email'],
+            'password' => 'required'
         ];
 
     }
