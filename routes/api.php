@@ -79,3 +79,20 @@ Route::get('/mutators', function () {
 
 });
 
+Route::get('/factory', function () {
+    // Esse apenas cria os objetos
+    $products = factory(Produto::class, 5)->make();
+    // Esse além de criar salva na base
+    // $products = factory(Produto::class, 2)->create();
+
+    // Esse além de salvar sobrescreve algum atributo
+    // $products = factory(Produto::class, 5)->create([
+    //     'descricao' => 'bolacha'
+    // ]);
+
+    return response([
+        'produtos' => $products
+    ]);
+
+});
+
