@@ -1,6 +1,6 @@
 @host = http://localhost:8000/api
 @name = produtos
-@auth = xxxxxxx
+@auth = ***
 
 ### getAlll
 GET {{host}}/{{name}} HTTP/1.1
@@ -40,3 +40,7 @@ Content-Type: application/json
 
 ### delete
 DELETE {{host}}/{{name}}/1 HTTP/1.1
+
+####
+GET {{host}}/mutators HTTP/1.1
+Accept-Encoding: "utf-8"
