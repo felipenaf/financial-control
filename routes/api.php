@@ -24,22 +24,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 // Route::get('/login', 'UserController@login');
 
-Route::get('/mutators', function () {
-    $product = Produto::find(1);
-
-    $desc1 = $product->descricao;
-    $product->descricao = "PÃOZINHO";
-    $desc2 = $product->descricao;
-
-    return response([
-        'product01' => $desc1,
-        'product02' => $desc2
-    ]);
-
-});
-
-#########################################################################
-
 Route::post('login', function (UserRequest $request) {
     $validator = Validator::make($request->only('email', 'password'), $request->loginRules());
 
@@ -78,3 +62,20 @@ Route::middleware(['jwt.auth'])->group(function () {
     ]);
 
 });
+
+################################################################################
+
+Route::get('/mutators', function () {
+    $product = Produto::find(1);
+
+    $desc1 = $product->descricao;
+    $product->descricao = "PÃOZINHO";
+    $desc2 = $product->descricao;
+
+    return response([
+        'product01' => $desc1,
+        'product02' => $desc2
+    ]);
+
+});
+
