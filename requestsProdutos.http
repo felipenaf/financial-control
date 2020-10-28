@@ -4,15 +4,19 @@
 
 ### getAlll
 GET {{host}}/{{name}} HTTP/1.1
+Content-Type: application/json
+Accept: application/json
 Authorization: Bearer {{auth}}
 
 ### getById
 GET {{host}}/{{name}}/150 HTTP/1.1
 Authorization: Bearer {{auth}}
+Accept: application/json
 
 ### store
 POST {{host}}/{{name}} HTTP/1.1
 Content-Type: application/json
+Accept: application/json
 
 {
     "id_grupo": "16",
