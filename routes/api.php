@@ -2,6 +2,8 @@
 
 use App\Http\Requests\UserRequest;
 use App\Produto;
+use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
@@ -96,3 +98,20 @@ Route::get('/factory', function () {
 
 });
 
+Route::get('notifications/', function () {
+    $notifications = User::find(1)->unreadNotifications;
+
+    $datas = [];
+    foreach ($notifications as $not) {
+        array_push($datas, [$not->id, $not->data]);
+    }
+
+    return $datas;
+});
+
+Route::put('notifications/{id}', function (Request $request, $id) {
+    User::find($id)->unreadNotifications
+        ->where('id', $request->id)->markAsRead();
+
+    return User::find($id)->unreadNotifications;
+});

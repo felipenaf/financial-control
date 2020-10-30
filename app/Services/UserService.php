@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Requests\UserRequest;
+use App\Notifications\NewUserNotification;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Services\Contracts\UserServiceInterface;
 use Exception;
@@ -32,6 +33,8 @@ class UserService implements UserServiceInterface
 
         try {
             $response = $this->repository->store($request);
+
+            event(new NewUserNotification($response));
 
             return response([
                 'code' => Response::HTTP_OK,
