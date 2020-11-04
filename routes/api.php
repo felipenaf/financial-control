@@ -8,7 +8,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,8 +59,9 @@ Route::apiResource('users', UserController::class);
 
 Route::middleware(['jwt.auth'])->group(function () {
     Route::apiResources([
-        'grupos' => 'GrupoController',
-        'produtos' => 'ProdutoController',
+        'grupos' => GrupoController::class,
+        'produtos' => ProdutoController::class,
+        'users' => UserController::class
     ]);
 
 });
