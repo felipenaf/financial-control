@@ -24,8 +24,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 //     return $request->user();
 // });
 
-// Route::get('/login', 'UserController@login');
-
 Route::post('login', function (UserRequest $request) {
     $validator = Validator::make($request->only('email', 'password'), $request->loginRules());
 
@@ -44,6 +42,7 @@ Route::post('login', function (UserRequest $request) {
             'status' => Response::HTTP_NOT_FOUND,
             'error' => 'NOT FOUND.'
         ], Response::HTTP_NOT_FOUND);
+
     }
 
     return response([
@@ -54,8 +53,6 @@ Route::post('login', function (UserRequest $request) {
     ]);
 
 });
-
-Route::apiResource('users', UserController::class);
 
 Route::middleware(['jwt.auth'])->group(function () {
     Route::apiResources([
