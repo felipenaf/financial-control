@@ -2,12 +2,16 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Produto extends Model
 {
     use SoftDeletes;
+    use Notifiable;
+    use HasFactory;
 
     protected $table = 'produtos';
 
@@ -17,6 +21,28 @@ class Produto extends Model
     ];
 
     protected $hidden = ['deleted_at'];
+
+    protected $dates = ['data_consumo'];
+
+    protected $casts = [
+        'valor' => 'string'
+    ];
+
+    /**
+     * Accessor / Get
+     */
+    public function getDescricaoAttribute($value)
+    {
+        return "Valor obtido pelo Acessor: " . $value;
+    }
+
+    /**
+     * Mutator / Set
+     */
+    public function setDescricaoAttribute($value)
+    {
+        $this->attributes['descricao'] = mb_strtolower($value);
+    }
 
     public function grupo()
     {
