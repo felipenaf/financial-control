@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +56,7 @@ Route::post('login', function (UserRequest $request) {
 
 });
 
-Route::apiResource('users', 'UserController');
+Route::apiResource('users', UserController::class);
 
 Route::middleware(['jwt.auth'])->group(function () {
     Route::apiResources([
@@ -83,7 +84,7 @@ Route::get('/mutators', function () {
 
 Route::get('/factory', function () {
     // Esse apenas cria os objetos
-    $products = factory(Produto::class, 5)->make();
+    $products = Produto::factory()->count(5)->make();
     // Esse além de criar salva na base
     // $products = factory(Produto::class, 2)->create();
 
