@@ -49,4 +49,9 @@ class Produto extends Model
         return $this->hasOne('App\Grupo', 'id', 'id_grupo');
     }
 
+    private function teste(int $num = 0, string $text = 'teste')
+    {
+        return "Foram executados " . $num . ' ' . $text . "(s)";
+    }
+
 }

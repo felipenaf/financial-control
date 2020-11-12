@@ -113,3 +113,19 @@ Route::put('notifications/{id}', function (Request $request, $id) {
 
     return User::find($id)->unreadNotifications;
 });
+
+Route::get('/reflection', function () {
+    $prod = new Produto();
+    $reflectionClass = new ReflectionClass(Produto::class);
+    $teste = $reflectionClass->getMethod('teste');
+    $teste->setAccessible(true);
+    return $teste->invoke($prod, 5);
+
+    return response([
+        'name' => $reflectionClass->getName(),
+        'interfaces' => $reflectionClass->getInterfaces(),
+        'metodos' => $reflectionClass->getMethods(),
+        'atributos' => $reflectionClass->getProperties(),
+    ]);
+
+});
