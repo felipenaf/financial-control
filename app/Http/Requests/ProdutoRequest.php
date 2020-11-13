@@ -23,34 +23,12 @@ class ProdutoRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
-    }
-
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array
-     */
-    public function storeRules()
-    {
         return [
             'id_grupo' => 'required|integer',
             'id_usuario' => 'required|integer',
             'descricao' => 'required',
             'valor' => 'required|numeric',
         ];
-
-    }
-
-    public function updateRules()
-    {
-        return [
-            'id_grupo' => 'integer',
-            'valor' => 'numeric',
-            'data_criacao' => 'date',
-            'descricao' => 'filled'
-        ];
-
     }
 
 }

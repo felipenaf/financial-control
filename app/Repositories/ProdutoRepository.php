@@ -41,10 +41,7 @@ class ProdutoRepository implements ProdutoRepositoryInterface
             return null;
         }
 
-        $produto->fill($request->except([
-            'id', 'id_usuario', 'data_modificacao'
-        ]));
-
+        $produto->fill($request->all());
         $produto->save();
 
         return $produto;

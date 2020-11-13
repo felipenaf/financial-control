@@ -28,7 +28,7 @@ class ProdutoController extends Controller
 
     public function store(ProdutoRequest $request)
     {
-        $validator = Validator::make($request->all(), $request->storeRules());
+        $validator = Validator::make($request->all(), $request->rules());
 
         if ($validator->fails()) {
             return response([
@@ -43,6 +43,16 @@ class ProdutoController extends Controller
 
     public function update(ProdutoRequest $request, int $id)
     {
+        $validator = Validator::make($request->all(), $request->rules());
+
+        if ($validator->fails()) {
+            return response([
+                'code' => Response::HTTP_BAD_REQUEST,
+                'data' => $validator->errors()
+            ], Response::HTTP_BAD_REQUEST);
+
+        }
+
         return $this->service->update($request, $id);
     }
 

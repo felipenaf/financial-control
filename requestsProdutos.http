@@ -8,7 +8,7 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 ### getById
-GET {{host}}/{{name}}/150 HTTP/1.1
+GET {{host}}/{{name}}/554 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
@@ -28,17 +28,21 @@ Authorization: Bearer {{token}}
 }
 
 ### update
-PUT {{host}}/{{name}}/552 HTTP/1.1
+PUT {{host}}/{{name}}/554 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-    "id_grupo": "2",
-    "valor": "222",
-    "descricao": "Teste Atualizado",
-    "observacao": "obs teste",
-    "data_criacao": "2018-12-31"
+    "id": 555,
+    "id_grupo": 3,
+    "id_usuario": 1,
+    "descricao": "Valor obtido pelo Acessor: teste",
+    "valor": "111",
+    "observacao": null,
+    "data_consumo": "2020-10-21T03:00:00.000000Z",
+    "updated_at": "2020-11-13T19:02:04.000000Z",
+    "created_at": "2020-11-13T19:02:04.000000Z"
 }
 
 ### delete

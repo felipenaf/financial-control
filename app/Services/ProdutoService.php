@@ -79,35 +79,16 @@ class ProdutoService implements ProdutoServiceInterface
 
     public function update(ProdutoRequest $request, int $id)
     {
-        $validator = Validator::make($request->all(), $request->updateRules());
+        $response = $this->repository->update($request, $id);
 
-        if ($validator->fails()) {
-            return response([
-                'code' => Response::HTTP_BAD_REQUEST,
-                'data' => $validator->errors()
-            ], Response::HTTP_BAD_REQUEST);
+        $code = empty($response)
+            ? Response::HTTP_NOT_FOUND
+            : Response::HTTP_OK;
 
-        }
-
-        try {
-            $response = $this->repository->update($request, $id);
-
-            $code = empty($response)
-                ? Response::HTTP_NOT_FOUND
-                : Response::HTTP_OK;
-
-            return response([
-                'code' => $code,
-                'data' => $response,
-            ], $code);
-
-        } catch (Exception $e) {
-            return response([
-                'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-                'error' => explode("\n", $e->getMessage())
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-        }
+        return response([
+            'code' => $code,
+            'data' => $response,
+        ], $code);
 
     }
 
