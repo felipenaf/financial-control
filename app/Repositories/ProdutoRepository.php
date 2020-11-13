@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Http\Requests\ProdutoRequest;
-use App\Produto;
+use App\Models\Produto;
 use App\Repositories\Contracts\ProdutoRepositoryInterface;
 
 class ProdutoRepository implements ProdutoRepositoryInterface

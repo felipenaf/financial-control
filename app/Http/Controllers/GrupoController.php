@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Grupo;
+use App\Models\Grupo;
 use App\Services\Contracts\GrupoServiceInterface;
 use Illuminate\Http\Request;
 
@@ -39,7 +39,7 @@ class GrupoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Grupo  $grupo
+     * @param  \App\Models\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
     public function show(Grupo $grupo)
@@ -51,7 +51,7 @@ class GrupoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Grupo  $grupo
+     * @param  \App\Models\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Grupo $grupo)
@@ -62,7 +62,7 @@ class GrupoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Grupo  $grupo
+     * @param  \App\Models\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
     public function destroy(Grupo $grupo)

@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Requests\UserRequest;
-use App\Produto;
-use App\User;
+use App\Models\Produto;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
@@ -66,7 +66,7 @@ Route::middleware(['jwt.auth'])->group(function () {
 ################################################################################
 
 Route::get('/mutators', function () {
-    $product = Produto::find(1);
+    $product = Produto::find(25);
 
     $desc1 = $product->descricao;
     $product->descricao = "PÃOZINHO";

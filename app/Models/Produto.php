@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -46,7 +46,7 @@ class Produto extends Model
 
     public function grupo()
     {
-        return $this->hasOne('App\Grupo', 'id', 'id_grupo');
+        return $this->hasOne('App\Models\Grupo', 'id', 'id_grupo');
     }
 
     private function teste(int $num = 0, string $text = 'teste')

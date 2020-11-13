@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Grupo;
+use App\Models\Grupo;
 use App\Repositories\Contracts\GrupoRepositoryInterface;
 
 class GrupoRepository implements GrupoRepositoryInterface

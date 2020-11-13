@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Http\Requests\UserRequest;
 use App\Repositories\Contracts\UserRepositoryInterface;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
