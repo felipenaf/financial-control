@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\Contracts\ProdutoServiceInterface;
 use App\Http\Requests\ProdutoRequest;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
 {
@@ -26,6 +28,16 @@ class ProdutoController extends Controller
 
     public function store(ProdutoRequest $request)
     {
+        $validator = Validator::make($request->all(), $request->storeRules());
+
+        if ($validator->fails()) {
+            return response([
+                'code' => Response::HTTP_BAD_REQUEST,
+                'data' => $validator->errors()
+            ], Response::HTTP_BAD_REQUEST);
+
+        }
+
         return $this->service->store($request);
     }
 
