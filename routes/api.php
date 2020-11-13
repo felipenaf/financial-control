@@ -1,13 +1,10 @@
 <?php
 
-use App\Http\Requests\UserRequest;
+use App\Http\Controllers\UserController;
 use App\Models\Produto;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Validator;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,35 +21,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 //     return $request->user();
 // });
 
-Route::post('login', function (UserRequest $request) {
-    $validator = Validator::make($request->only('email', 'password'), $request->loginRules());
-
-    if ($validator->fails()) {
-        return response([
-            'code' => Response::HTTP_BAD_REQUEST,
-            'data' => $validator->errors()
-        ], Response::HTTP_BAD_REQUEST);
-
-    }
-
-    $token = JWTAuth::attempt($request->only('email', 'password'));
-
-    if ($token === false) {
-        return response([
-            'status' => Response::HTTP_NOT_FOUND,
-            'error' => 'NOT FOUND.'
-        ], Response::HTTP_NOT_FOUND);
-
-    }
-
-    return response([
-        'status' => Response::HTTP_OK,
-        'data' => [
-            'token' => $token,
-        ]
-    ]);
-
-});
+Route::post('login', [UserController::class, 'login']);
 
 Route::middleware(['jwt.auth'])->group(function () {
     Route::apiResources([

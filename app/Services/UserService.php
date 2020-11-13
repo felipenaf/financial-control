@@ -9,6 +9,7 @@ use App\Services\Contracts\UserServiceInterface;
 use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserService implements UserServiceInterface
 {
@@ -17,6 +18,29 @@ class UserService implements UserServiceInterface
     public function __construct(UserRepositoryInterface $repository)
     {
         $this->repository = $repository;
+    }
+
+    public function login(UserRequest $request)
+    {
+        $token = JWTAuth::attempt($request->only('email', 'password'));
+
+        if ($token === false) {
+            return response([
+                'status' => Response::HTTP_UNAUTHORIZED,
+                'error' => 'Não Autorizado'
+            ], Response::HTTP_UNAUTHORIZED);
+
+        }
+
+        return response([
+            'status' => Response::HTTP_OK,
+            'data' => [
+                'access_token' => $token,
+                'token_type' => 'bearer',
+            ]
+
+        ]);
+
     }
 
     public function store(UserRequest $request)
