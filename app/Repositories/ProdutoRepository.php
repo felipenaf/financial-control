@@ -52,7 +52,7 @@ class ProdutoRepository implements ProdutoRepositoryInterface
         $produto = $this->model->find($id);
 
         if (empty($produto)) {
-            return false;
+            return null;
         }
 
         return $produto->delete();
