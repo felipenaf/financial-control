@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Http\Requests\ProdutoRequest;
 use App\Repositories\Contracts\ProdutoRepositoryInterface;
 use App\Services\Contracts\ProdutoServiceInterface;
-use Exception;
 use Illuminate\Http\Response;
 
 class ProdutoService implements ProdutoServiceInterface
