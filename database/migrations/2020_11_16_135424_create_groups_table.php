@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSoftDeletesToProdutosTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class AddSoftDeletesToProdutosTable extends Migration
      */
     public function up()
     {
-        Schema::table('produtos', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('groups', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 100);
+            $table->enum('type', ['recipe', 'expense']);
+            $table->timestamps();
         });
-
     }
 
     /**
@@ -26,9 +28,6 @@ class AddSoftDeletesToProdutosTable extends Migration
      */
     public function down()
     {
-        Schema::table('produtos', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
-
+        Schema::dropIfExists('groups');
     }
 }
