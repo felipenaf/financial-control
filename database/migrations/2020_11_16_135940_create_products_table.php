@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('description');
             $table->float('amount', 8, 2);
-            $table->text('detail');
+            $table->text('detail')->nullable();
             $table->timestamp('consumption_at', 0);
             $table->softDeletes();
             $table->timestamps();

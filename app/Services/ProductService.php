@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-use App\Http\Requests\ProdutoRequest;
-use App\Repositories\Contracts\ProdutoRepositoryInterface;
-use App\Services\Contracts\ProdutoServiceInterface;
+use App\Http\Requests\ProductRequest;
+use App\Repositories\Contracts\ProductRepositoryInterface;
+use App\Services\Contracts\ProductServiceInterface;
 use Illuminate\Http\Response;
 
-class ProdutoService implements ProdutoServiceInterface
+class ProductService implements ProductServiceInterface
 {
     private $repository;
 
-    public function __construct(ProdutoRepositoryInterface $repository)
+    public function __construct(ProductRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -46,7 +46,7 @@ class ProdutoService implements ProdutoServiceInterface
         return response(['code' => Response::HTTP_OK, 'data' => $response]);
     }
 
-    public function store(ProdutoRequest $request)
+    public function store(ProductRequest $request)
     {
         $response = $this->repository->store($request);
 
@@ -57,7 +57,7 @@ class ProdutoService implements ProdutoServiceInterface
 
     }
 
-    public function update(ProdutoRequest $request, int $id)
+    public function update(ProductRequest $request, int $id)
     {
         $response = $this->repository->update($request, $id);
 

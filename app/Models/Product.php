@@ -23,7 +23,7 @@ class Product extends Model
     protected $dates = ['consumption_at'];
 
     protected $casts = [
-        'value' => 'string'
+        'amount' => 'string'
     ];
 
     /**
@@ -44,7 +44,7 @@ class Product extends Model
 
     public function group()
     {
-        return $this->hasOne('App\Models\Group', 'id', 'group_id');
+        return $this->hasOne(Group::class, 'id', 'group_id');
     }
 
     private function teste(int $num = 0, string $text = 'teste')

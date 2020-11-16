@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
-use App\Models\Produto;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +26,7 @@ Route::post('login', [UserController::class, 'login']);
 Route::middleware(['jwt.auth'])->group(function () {
     Route::apiResources([
         'grupos' => GrupoController::class,
-        'produtos' => ProdutoController::class,
+        'produtos' => ProductController::class,
         'users' => UserController::class
     ]);
 
@@ -35,7 +35,7 @@ Route::middleware(['jwt.auth'])->group(function () {
 ################################################################################
 
 Route::get('/mutators', function () {
-    $product = Produto::find(25);
+    $product = Product::find(25);
 
     $desc1 = $product->descricao;
     $product->descricao = "PÃOZINHO";
@@ -50,7 +50,7 @@ Route::get('/mutators', function () {
 
 Route::get('/factory', function () {
     // Esse apenas cria os objetos
-    $products = Produto::factory()->count(5)->make();
+    $products = Product::factory()->count(5)->make();
     // Esse além de criar salva na base
     // $products = factory(Produto::class, 2)->create();
 
@@ -84,8 +84,8 @@ Route::put('notifications/{id}', function (Request $request, $id) {
 });
 
 Route::get('/reflection', function () {
-    $prod = new Produto();
-    $reflectionClass = new ReflectionClass(Produto::class);
+    $prod = new Product();
+    $reflectionClass = new ReflectionClass(Product::class);
     $teste = $reflectionClass->getMethod('teste');
     $teste->setAccessible(true);
     return $teste->invoke($prod, 5);

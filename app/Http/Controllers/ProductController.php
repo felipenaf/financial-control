@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Contracts\ProdutoServiceInterface;
-use App\Http\Requests\ProdutoRequest;
+use App\Services\Contracts\ProductServiceInterface;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
-class ProdutoController extends Controller
+class ProductController extends Controller
 {
     private $service;
 
-    public function __construct(ProdutoServiceInterface $service)
+    public function __construct(ProductServiceInterface $service)
     {
         $this->service = $service;
     }
@@ -26,7 +26,7 @@ class ProdutoController extends Controller
         return $this->service->getById($id);
     }
 
-    public function store(ProdutoRequest $request)
+    public function store(ProductRequest $request)
     {
         $validator = Validator::make($request->all(), $request->rules());
 
@@ -41,7 +41,7 @@ class ProdutoController extends Controller
         return $this->service->store($request);
     }
 
-    public function update(ProdutoRequest $request, int $id)
+    public function update(ProductRequest $request, int $id)
     {
         $validator = Validator::make($request->all(), $request->rules());
 
