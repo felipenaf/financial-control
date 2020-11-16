@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grupo;
-use App\Services\Contracts\GrupoServiceInterface;
+use App\Models\Group;
+use App\Services\Contracts\GroupServiceInterface;
 use Illuminate\Http\Request;
 
-class GrupoController extends Controller
+class GroupController extends Controller
 {
-    private $grupoService;
+    private $service;
 
-    public function __construct(GrupoServiceInterface $grupoService)
+    public function __construct(GroupServiceInterface $service)
     {
-        $this->grupoService = $grupoService;
+        $this->service = $service;
     }
 
     /**
@@ -22,7 +22,7 @@ class GrupoController extends Controller
      */
     public function index()
     {
-        return $this->grupoService->getAll();
+        return $this->service->getAll();
     }
 
     /**
@@ -39,10 +39,10 @@ class GrupoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Grupo  $grupo
+     * @param  \App\Models\Group  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function show(Grupo $grupo)
+    public function show(Group $grupo)
     {
         //
     }
@@ -51,10 +51,10 @@ class GrupoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Grupo  $grupo
+     * @param  \App\Models\Group  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grupo $grupo)
+    public function update(Request $request, Group $grupo)
     {
         //
     }
@@ -62,10 +62,10 @@ class GrupoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Grupo  $grupo
+     * @param  \App\Models\Group  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grupo $grupo)
+    public function destroy(Group $grupo)
     {
         //
     }

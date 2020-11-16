@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-interface GrupoRepositoryInterface
+interface GroupRepositoryInterface
 {
     public function getAll();
 }

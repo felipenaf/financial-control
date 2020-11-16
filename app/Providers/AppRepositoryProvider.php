@@ -10,7 +10,7 @@ class AppRepositoryProvider extends ServiceProvider
     private $namespaceContract = 'App\Repositories\Contracts\\';
 
     private $repositories = [
-        'GrupoRepository',
+        'GroupRepository',
         'ProductRepository',
         'UserRepository'
     ];

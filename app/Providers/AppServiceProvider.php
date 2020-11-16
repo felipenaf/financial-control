@@ -10,7 +10,7 @@ class AppServiceProvider extends ServiceProvider
     private $namespaceContract = 'App\Services\Contracts\\';
 
     private $services = [
-        'GrupoService',
+        'GroupService',
         'ProductService',
         'UserService'
     ];
