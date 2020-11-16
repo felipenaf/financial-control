@@ -7,7 +7,6 @@ use App\Repositories\Contracts\ProdutoRepositoryInterface;
 use App\Services\Contracts\ProdutoServiceInterface;
 use Exception;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Validator;
 
 class ProdutoService implements ProdutoServiceInterface
 {
@@ -81,15 +80,15 @@ class ProdutoService implements ProdutoServiceInterface
     {
         $response = $this->repository->update($request, $id);
 
-        $code = empty($response)
-            ? Response::HTTP_NOT_FOUND
-            : Response::HTTP_OK;
+        if ($response == null) {
+            return response([
+                'code' => Response::HTTP_NOT_FOUND,
+                'error' => Response::$statusTexts[Response::HTTP_NOT_FOUND],
+            ], Response::HTTP_NOT_FOUND);
 
-        return response([
-            'code' => $code,
-            'data' => $response,
-        ], $code);
+        }
 
+        return response(['code' => Response::HTTP_OK, 'data' => $response]);
     }
 
     public function destroy(int $id)
