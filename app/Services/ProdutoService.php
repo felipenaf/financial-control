@@ -19,50 +19,32 @@ class ProdutoService implements ProdutoServiceInterface
 
     public function getAll()
     {
-        try {
-            $response = $this->repository->getAll();
+        $response = $this->repository->getAll();
 
-            $code = empty($response)
-                ? Response::HTTP_NOT_FOUND
-                : Response::HTTP_OK;
-
+        if (empty($response)) {
             return response([
-                'code' => $code,
-                'data' => $response,
-            ], $code);
-
-        } catch (Exception $e) {
-            return response([
-                'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-                'error' => explode("\n", $e->getMessage())
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+                'code' => Response::HTTP_NOT_FOUND,
+                'error' => Response::$statusTexts[Response::HTTP_NOT_FOUND],
+            ], Response::HTTP_NOT_FOUND);
 
         }
 
+        return response(['code' => Response::HTTP_OK, 'data' => $response]);
     }
 
     public function getById(int $id)
     {
-        try {
-            $response = $this->repository->getById($id);
+        $response = $this->repository->getById($id);
 
-            $code = empty($response)
-                ? Response::HTTP_NOT_FOUND
-                : Response::HTTP_OK;
-
+        if (empty($response)) {
             return response([
-                'code' => $code,
-                'data' => $response,
-            ], $code);
-
-        } catch (Exception $e) {
-            return response([
-                'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-                'error' => explode("\n", $e->getMessage())
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+                'code' => Response::HTTP_NOT_FOUND,
+                'error' => Response::$statusTexts[Response::HTTP_NOT_FOUND],
+            ], Response::HTTP_NOT_FOUND);
 
         }
 
+        return response(['code' => Response::HTTP_OK, 'data' => $response]);
     }
 
     public function store(ProdutoRequest $request)
