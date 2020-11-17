@@ -18,7 +18,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function store(UserRequest $request)
     {
-        $this->model->password = Hash::make($request->get('password'));
+        $this->model->password = $request->get('password');
         $this->model->email = $request->get('email');
         $this->model->name = $request->get('name');
         $this->model->save();

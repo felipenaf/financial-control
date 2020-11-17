@@ -25,9 +25,9 @@ Route::post('login', [UserController::class, 'login']);
 
 Route::middleware(['jwt.auth'])->group(function () {
     Route::apiResources([
-        'grupos' => GroupController::class,
-        'produtos' => ProductController::class,
-        'users' => UserController::class
+        'grupos' => 'GroupController',
+        'produtos' => 'ProductController',
+        'users' => 'UserController'
     ]);
 
 });
