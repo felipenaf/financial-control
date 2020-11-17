@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\Contracts\GroupRepositoryInterface;
 use App\Services\Contracts\GroupServiceInterface;
+use Illuminate\Http\Response;
 
 class GroupService implements GroupServiceInterface
 {
@@ -16,7 +17,17 @@ class GroupService implements GroupServiceInterface
 
     public function getAll()
     {
-        return $this->repository->getAll();
+        $response = $this->repository->getAll();
+
+        if (empty($response)) {
+            return response([
+                'code' => Response::HTTP_NOT_FOUND,
+                'error' => Response::$statusTexts[Response::HTTP_NOT_FOUND],
+            ], Response::HTTP_NOT_FOUND);
+
+        }
+
+        return response(['code' => Response::HTTP_OK, 'data' => $response]);
     }
 
 }
