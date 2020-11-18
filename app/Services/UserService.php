@@ -55,23 +55,14 @@ class UserService implements UserServiceInterface
 
         }
 
-        try {
-            $response = $this->repository->store($request);
+        $response = $this->repository->store($request);
 
-            event(new NewUserNotification($response));
+        event(new NewUserNotification($response));
 
-            return response([
-                'code' => Response::HTTP_OK,
-                'data' => $response,
-            ], Response::HTTP_OK);
-
-        } catch (Exception $e) {
-            return response([
-                'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-                'error' => explode("\n", $e->getMessage())
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-        }
+        return response([
+            'code' => Response::HTTP_OK,
+            'data' => $response,
+        ]);
 
     }
 
