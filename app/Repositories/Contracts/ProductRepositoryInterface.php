@@ -6,7 +6,7 @@ use App\Http\Requests\ProductRequest;
 
 interface ProductRepositoryInterface
 {
-    public function getAll();
+    public function getAll(int $userId);
 
     public function getById(int $id);
 
