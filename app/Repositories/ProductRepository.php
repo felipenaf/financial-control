@@ -15,9 +15,9 @@ class ProductRepository implements ProductRepositoryInterface
         $this->model = $model;
     }
 
-    public function getAll()
+    public function getAll(int $userId)
     {
-        return $this->model->with(['group'])->get();
+        return $this->model->with(['group'])->where('user_id', $userId)->get();
     }
 
     public function getById(int $id)

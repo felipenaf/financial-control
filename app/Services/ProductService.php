@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Services\Contracts\ProductServiceInterface;
 use Illuminate\Http\Response;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ProductService implements ProductServiceInterface
 {
@@ -18,7 +19,9 @@ class ProductService implements ProductServiceInterface
 
     public function getAll()
     {
-        $response = $this->repository->getAll();
+        $user = JWTAuth::parseToken()->authenticate();
+
+        $response = $this->repository->getAll($user->id);
 
         if (empty($response)) {
             return response([
