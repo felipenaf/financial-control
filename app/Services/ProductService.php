@@ -17,7 +17,7 @@ class ProductService implements ProductServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAll()
+    public function getAll(): Response
     {
         $user = JWTAuth::parseToken()->authenticate();
 
@@ -34,7 +34,7 @@ class ProductService implements ProductServiceInterface
         return response(['code' => Response::HTTP_OK, 'data' => $response]);
     }
 
-    public function getById(int $id)
+    public function getById(int $id): Response
     {
         $response = $this->repository->getById($id);
 
@@ -49,7 +49,7 @@ class ProductService implements ProductServiceInterface
         return response(['code' => Response::HTTP_OK, 'data' => $response]);
     }
 
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): Response
     {
         $response = $this->repository->store($request);
 
@@ -60,7 +60,7 @@ class ProductService implements ProductServiceInterface
 
     }
 
-    public function update(ProductRequest $request, int $id)
+    public function update(ProductRequest $request, int $id): Response
     {
         $response = $this->repository->update($request, $id);
 
@@ -75,7 +75,7 @@ class ProductService implements ProductServiceInterface
         return response(['code' => Response::HTTP_OK, 'data' => $response]);
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
         $response = $this->repository->destroy($id);
 

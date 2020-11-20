@@ -3,17 +3,18 @@
 namespace App\Services\Contracts;
 
 use App\Http\Requests\ProductRequest;
+use Illuminate\Http\Response;
 
 interface ProductServiceInterface
 {
-    public function getAll();
+    public function getAll(): Response;
 
-    public function getById(int $id);
+    public function getById(int $id): Response;
 
-    public function store(ProductRequest $produto);
+    public function store(ProductRequest $produto): Response;
 
-    public function update(ProductRequest $request, int $id);
+    public function update(ProductRequest $request, int $id): Response;
 
-    public function destroy(int $id);
+    public function destroy(int $id): Response;
 
 }
