@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::post('login', [UserController::class, 'login']);
 
 Route::middleware(['jwt.auth'])->group(function () {
