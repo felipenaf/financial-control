@@ -27,4 +27,15 @@ class ProductTest extends TestCase
         $this->assertCount($beforeInserting + 1, $afterInserting);
     }
 
+    /** @test */
+    public function only_fillable_attributes()
+    {
+        $product = new Product();
+
+        $this->assertEquals([
+            'group_id', 'user_id', 'description',
+            'amount', 'detail', 'consumption_at',
+        ], $product->getFillable());
+    }
+
 }
