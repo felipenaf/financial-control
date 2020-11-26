@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Group;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -36,6 +37,17 @@ class ProductTest extends TestCase
             'group_id', 'user_id', 'description',
             'amount', 'detail', 'consumption_at',
         ], $product->getFillable());
+    }
+
+    /** @test */
+    public function has_relationship_with_group()
+    {
+        $product = new Product();
+        $group = new Group();
+
+        $gg = $product->group()->getRelated();
+
+        $this->assertEquals($group, $product->group()->getRelated());
     }
 
 }
